@@ -344,11 +344,28 @@ const resolvers = {
     },
 };
 
+// const server = new ApolloServer({
+//     typeDefs,
+//     resolvers,
+// });
+
+// server.listen().then(({ url }) => {
+//     console.log(`Server ready at ${url}`);
+// });
+const corsOptions = {
+    origin: 'http://localhost:5173', // Cambia esto con el dominio de tu aplicación en desarrollo
+    credentials: true,
+};
+
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    cors: corsOptions,
 });
 
-server.listen().then(({ url }) => {
+// Arrancar el servidor
+const PORT = 4000;
+
+server.listen(PORT).then(({ url }) => {
     console.log(`Server ready at ${url}`);
 });
